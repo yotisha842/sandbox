@@ -18,4 +18,6 @@ class MemoryService {
 
     fun forget(userId: String, fact: String): Boolean =
         storage[userId]?.remove(fact) ?: false
+
+    fun count(userId: String): Int = storage[userId]?.size ?: 0
 }
