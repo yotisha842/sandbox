@@ -28,4 +28,9 @@ class KinopoiskSubagentTest {
         val response = KinopoiskSubagent().handle(req("хочу сериал"))
         assertEquals("kinopoisk", response.handledBy)
     }
+
+    @Test
+    fun `не берёт пустой запрос`() {
+        assertFalse(KinopoiskSubagent().canHandle(req("")))
+    }
 }
