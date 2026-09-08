@@ -9,6 +9,7 @@ class MemoryService {
     private val storage = mutableMapOf<String, MutableList<String>>()
 
     fun remember(userId: String, fact: String) {
+        if (fact.isBlank()) return
         storage.getOrPut(userId) { mutableListOf() }.add(fact)
     }
 
