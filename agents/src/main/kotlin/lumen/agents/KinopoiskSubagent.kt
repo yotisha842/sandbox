@@ -4,16 +4,22 @@ import lumen.core.AgentRequest
 import lumen.core.AgentResponse
 import lumen.core.Subagent
 
-/**
- * TODO(задание): в нём сейчас вообще ничего нет.
- * Рядом лежит MusicSubagent как образец — сделай так же, только про кино.
- */
 class KinopoiskSubagent : Subagent {
 
     override val name: String = "kinopoisk"
 
-    override fun canHandle(request: AgentRequest): Boolean = false
+    private val triggers = listOf("фильм", "кино", "сериал", "режиссёр", "актёр")
 
-    override fun handle(request: AgentRequest): AgentResponse =
-        TODO("не реализовано")
+    override fun canHandle(request: AgentRequest): Boolean {
+        val text = request.lastUserText.lowercase()
+        return triggers.any { text.contains(it) }
+    }
+
+    override fun handle(request: AgentRequest): AgentResponse {
+        val query = request.lastUserText.trim()
+        return AgentResponse(
+            text = "Нашёл для тебя кино по запросу: \"$query\"",
+            handledBy = name,
+        )
+    }
 }
