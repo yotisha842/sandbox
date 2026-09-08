@@ -8,7 +8,7 @@ class KinopoiskSubagent : Subagent {
 
     override val name: String = "kinopoisk"
 
-    private val triggers = listOf("фильм", "кино", "сериал", "режиссёр", "посмотреть", "мультфильм")
+    private val triggers = listOf("фильм", "кино", "сериал", "режиссёр", "актёр")
 
     override fun canHandle(request: AgentRequest): Boolean {
         val text = request.lastUserText.lowercase()
