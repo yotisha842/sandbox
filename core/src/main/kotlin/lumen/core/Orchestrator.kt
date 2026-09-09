@@ -10,7 +10,7 @@ class Orchestrator(
     fun route(request: AgentRequest): AgentResponse {
         val agent = subagents.firstOrNull { it.canHandle(request) }
             ?: return AgentResponse(
-                text = "Пока не умею отвечать на такое.",
+                text = "Пока не умею отвечать на такое, но учусь.",
                 handledBy = "fallback",
             )
         return agent.handle(request)
