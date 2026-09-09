@@ -27,4 +27,14 @@ class OrchestratorTest {
         val response = Orchestrator(listOf(stub)).route(req("привет"))
         assertEquals("fallback", response.handledBy)
     }
+
+    @Test
+    fun `stats считает и попадания и фолбэки`() {
+        val orchestrator = Orchestrator(listOf(stub))
+        orchestrator.route(req("это тест"))
+        orchestrator.route(req("это тоже тест"))
+        orchestrator.route(req("привет"))
+
+        assertEquals(mapOf("stub" to 2, "fallback" to 1), orchestrator.stats())
+    }
 }
